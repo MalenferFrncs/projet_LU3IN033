@@ -3,17 +3,18 @@ import java.io.FileReader;
 
 
 public class Trame {
-    private Champ preambule, destination,source,type,crc,data;
+    private Champ preambule, destination,source,type,crc;
+    private IpV4 data;
     
    
     Trame(FileReader r){
         try{
-            preambule = new Champ(r,8,"preambule"); 
+            //preambule = new Champ(r,8,"preambule"); 
             destination = new Champ(r, 6, "destination");
             source = new Champ(r,6,"source");
             type = new Champ(r,2,"champ");
-            //TODO initialiser le champ data
-            crc = new Champ(r,4,"CRC");
+            data = new IpV4(r);
+            //crc = new Champ(r,4,"CRC");
 
 
         }catch(WrongFileTypeException e){
@@ -26,7 +27,7 @@ public class Trame {
         String s = type.getOctet();
         switch (s){
             case "0800" : return "IP";
-            case "0806" : return "ARP";
+            //case "0806" : return "ARP";
             default : throw new DataTypeException();
         } 
     }
