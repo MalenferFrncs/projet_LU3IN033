@@ -1,7 +1,6 @@
 import java.io.FileReader;
 
 
-
 public class Trame {
     private Champ preambule, destination,source,type,crc;
     private IpV4 data;
@@ -58,6 +57,9 @@ public class Trame {
         return preambule.getOctet()+destination.getOctet()+source.getOctet()+type.getOctet()+data.getOctet()+crc.getOctet();
     }
 
+    public IpV4 getdata(){
+        return data;
+    }
     
 
 

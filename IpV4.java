@@ -22,7 +22,7 @@ public class IpV4 {
         destination_adress = new Champ(r, 4, "Destionation adress");
         int taille_option = (version_IHL.getInt_from_bits(1))-20;
         option_padding = new Champ(r, taille_option, "Option et Padding");
-        data = new TCP(r);
+        data = new TCP(r,(total_length.getInt_from_Champs()-version_IHL.getInt_from_bits(1)));
         }catch(WrongFileTypeException e){System.out.println(e.getMessage());}
     }
 

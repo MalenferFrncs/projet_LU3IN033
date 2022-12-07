@@ -57,6 +57,9 @@ public class Champ {
 
     public String getName(){return name;}
     public String getOctet(){return octet;}
+    public String getOctetAt(int i){
+        return String.valueOf(octet.charAt(i*2))+octet.charAt((i*2)+1); 
+    }
     public int getLength(){return length/2;}
 
     public String getBitsAt (int i) throws WrongFileTypeException{
@@ -123,6 +126,44 @@ public class Champ {
             res = res*16; //decalage de 4 bits vers la gauche
             res += getInt_from_bits(i);
         }
+        }catch(WrongFileTypeException e){System.out.println(e.getMessage());}
+        return res;
+
+    }
+
+
+    private byte getbyte_from_byte(int i)throws WrongFileTypeException{
+        char c =octet.charAt(i);
+        switch(c){
+            case '0' : return 0;
+            case '1' : return 1;
+            case '2' : return 2;
+            case '3' : return 3;
+            case '4' : return 4;
+            case '5' : return 5;
+            case '6' : return 6;
+            case '7' : return 7;
+            case '8' : return 8;
+            case '9' : return 9;
+            case 'A' : return 10;
+            case 'B' : return 11;
+            case 'C' : return 12;
+            case 'D' : return 13;
+            case 'E' : return 14;
+            case 'F' : return 15;
+            default : throw new WrongFileTypeException();
+        }
+
+    }
+
+    public byte getbyte_from_Champ(int i){
+        byte res=0;
+        i=i*2;
+        try{
+            res += getbyte_from_byte(i);
+            res = (byte) (res*16); //decalage de 4 bits vers la gauche
+            res += getbyte_from_byte(i+1);
+        
         }catch(WrongFileTypeException e){System.out.println(e.getMessage());}
         return res;
 
