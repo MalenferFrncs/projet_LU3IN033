@@ -8,8 +8,8 @@ public class IpV4 {
     private Champ version_IHL, tos , total_length, identification, flags_fragment_offset,ttl,protocole;
     private Champ header_checksum,source_adress,destination_adress,option_padding;
     private TCP data;
-    public IpV4(FileReader r){
-        try{
+    public IpV4(FileReader r) throws WrongFileTypeException, EndOfFileException{
+        //try{
         version_IHL = new Champ(r,1,"version et IHL");
         tos = new Champ(r,1,"TOS");
         total_length = new Champ(r,2,"total length");
@@ -20,10 +20,10 @@ public class IpV4 {
         header_checksum = new Champ(r, 2, "Header checksum");
         source_adress = new Champ(r, 4, "Source adress");
         destination_adress = new Champ(r, 4, "Destionation adress");
-        int taille_option = (version_IHL.getInt_from_bits(1))-20;
+        int taille_option = (version_IHL.getInt_from_bits(1)*4)-20;
         option_padding = new Champ(r, taille_option, "Option et Padding");
-        data = new TCP(r,(total_length.getInt_from_Champs()-version_IHL.getInt_from_bits(1)));
-        }catch(WrongFileTypeException e){System.out.println(e.getMessage());}
+        data = new TCP(r,(total_length.getInt_from_Champs()-(version_IHL.getInt_from_bits(1)*4)));
+        //}catch(WrongFileTypeException e){System.out.println(e.getMessage());}
     }
 
     public String getOctet(){
@@ -35,17 +35,17 @@ public class IpV4 {
 
     public String getVersion(){
         String r ="";
-        try{
+        //try{
         r = version_IHL.getBitsAt(0);
-        }catch(WrongFileTypeException e){System.out.println(e.getMessage());}
+        //}catch(WrongFileTypeException e){System.out.println(e.getMessage());}
         return r;
     }
 
     public int getTailleEntete(){
         int r =0;
-        try {
+        //try {
         r = version_IHL.getInt_from_bits(1);
-        }catch(WrongFileTypeException e){System.out.println(e.getMessage());}
+        //}catch(WrongFileTypeException e){System.out.println(e.getMessage());}
         return r*4;
     }
 
@@ -53,14 +53,14 @@ public class IpV4 {
 
     public String getIdentification(){return identification.getOctet();}
 
-    public String getflag(int i) throws WrongFileTypeException{
+    public String getflag(int i) {
         String bits = flags_fragment_offset.getBitsAt(0);
         String flag = ""+bits.charAt(i);
         return flag; 
         
     }
 
-    public int getOffset() throws WrongFileTypeException{
+    public int getOffset() {
         int offset = Integer.parseInt(getflag(3));
         for(int i=1;i<4;i++){
             offset = offset*16; // decalage de 4 bit vers la gauche
@@ -85,7 +85,7 @@ public class IpV4 {
         return header_checksum.getOctet();
     }
 
-    public String getIpSource()throws WrongFileTypeException{
+    public String getIpSource(){
         String addr = "";
         for(int i=0;i<4;i++){
             int valOctet = source_adress.getInt_from_bits(i*2);
@@ -98,7 +98,7 @@ public class IpV4 {
         return addr;
     }
 
-    public String getIpDestionation()throws WrongFileTypeException{
+    public String getIpDestionation(){
         String addr = "";
         for(int i=0;i<4;i++){
             int valOctet = destination_adress.getInt_from_bits(i*2);

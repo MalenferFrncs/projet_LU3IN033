@@ -6,27 +6,28 @@ public class TCP {
     checksum,urg_pointer,options;
     private Http data = null ;
 
-    public TCP(FileReader r, int taille){
+    public TCP(FileReader r, int taille) throws WrongFileTypeException, EndOfFileException {
         try {
             src_port = new Champ(r, 2, "source port");  
             des_port = new Champ(r, 2, "destionation port");
             seq_num = new Champ(r,4,"sequence number");
             ack_num = new Champ(r, 4, "ACK number");
-            thl_reser = new Champ(r,1,"data offset res");
+            thl_reser = new Champ(r,1,"thl res");
             ved_flags = new Champ(r, 1, "erv, flags");
             window = new Champ(r,2,"window");
             checksum = new Champ(r,2,"checksum");
             urg_pointer = new Champ(r, 2, "urgent pointer");
-            int taille_option = (thl_reser.getInt_from_bits(0))-20;
+            int taille_option = (thl_reser.getInt_from_bits(0)*4)-20;
+            //System.out.println(""+taille_option);
             options = new Champ(r, taille_option, "options tcp");
-            data = new Http(r,(taille-thl_reser.getInt_from_bits(0)));
+            data = new Http(r,(taille-(thl_reser.getInt_from_bits(0)*4)));
         } catch (Exception e) {
-            // TODO: handle exception
+             //TODO: handle exception
         }
         
         
 
-
+        
     }
 
     public int get_src_port(){

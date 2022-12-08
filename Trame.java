@@ -6,8 +6,8 @@ public class Trame {
     private IpV4 data;
     
    
-    Trame(FileReader r){
-        try{
+    Trame(FileReader r)throws WrongFileTypeException, EndOfFileException{
+        //try{
             //preambule = new Champ(r,8,"preambule"); 
             destination = new Champ(r, 6, "destination");
             source = new Champ(r,6,"source");
@@ -16,9 +16,9 @@ public class Trame {
             //crc = new Champ(r,4,"CRC");
 
 
-        }catch(WrongFileTypeException e){
-            System.out.println(e.getMessage());
-        }
+        //}catch(WrongFileTypeException e){
+        //    System.out.println(e.getMessage());
+        //}
     }
 
 
