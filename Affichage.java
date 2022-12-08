@@ -10,18 +10,25 @@ public class Affichage{
     private String reception;
     private int nbLignes;
     private int nbTrames;
-    
+
 
     public Affichage(File f){
         this.f=f;
         this.tc=new Trame_champ(f);
     }
 
-    public envoiData(){
+    public void envoiData(){
+        System.out.print();
 
     }
 
-    public recoitData(){
+    public void recoitData(){
+        System.out.println();
+    }
 
+    public void graph(){
+      for(Trame s : t.trame_list){
+          System.out.println();
+      }
     }
 }
