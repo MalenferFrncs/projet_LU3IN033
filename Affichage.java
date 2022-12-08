@@ -6,8 +6,8 @@ import java.io.IOException;
 public class Affichage{
     private File f;
     private Trame_champ tc;
-    private String envoi;
-    private String reception;
+    private Champ src;
+    private Champ dst;
     private int nbLignes;
     private int nbTrames;
 
@@ -15,6 +15,8 @@ public class Affichage{
     public Affichage(File f){
         this.f=f;
         this.tc=new Trame_champ(f);
+        src=tc.trame_list.get(0).source;
+        dst=tc.trame_list.get(0).destination;
     }
 
     public void envoiData(){
@@ -27,8 +29,9 @@ public class Affichage{
     }
 
     public void graph(){
+      System.out.println(src+"\t"+dst);
       for(Trame s : t.trame_list){
-          System.out.println();
+          
       }
     }
 }
