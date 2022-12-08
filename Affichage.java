@@ -8,6 +8,9 @@ public class Affichage{
     private Trame_champ tc;
     private String envoi;
     private String reception;
+    private int nbLignes;
+    private int nbTrames;
+    
 
     public Affichage(File f){
         this.f=f;
@@ -19,6 +22,6 @@ public class Affichage{
     }
 
     public recoitData(){
-      
+
     }
 }
