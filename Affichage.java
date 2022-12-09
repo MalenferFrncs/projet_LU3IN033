@@ -12,6 +12,10 @@ public class Affichage{
     //private int nbLignes;
     //private int nbTrames;
     private String affichage = "";
+    boolean ip=false,ip_srcb=false,ip_dstb=false, tcp=false,tcp_dstb = false, tcp_srcb=false,http=false,condition=false;
+    int tcp_dst =0,tcp_src=0;
+    String ip_dst = "",ip_src="";
+
 
 
     public Affichage(File f) throws IOException{
@@ -33,9 +37,10 @@ public class Affichage{
 
     public void makeAffichage(){
     
-      affichage += ("discussion entre "+srcIP+" et "+dstIP+"\n");
+      affichage += ("\nDiscussion entre "+srcIP+" et "+dstIP+"\n");
       while(!(tc.trame_list.isEmpty())){
             Trame_info ti = tc.trame_list.remove(0);
+            if(condition(ti)){
             /*System.out.println(""+ti.ip.getIpDestionation() );
             System.out.println(""+ dstIP);
             System.out.println(""+(ti.ip.getIpDestionation().equals(dstIP))); */
@@ -47,8 +52,9 @@ public class Affichage{
                 }else{
                     affichage += ("\nfin discussion entre "+srcIP+" et "+dstIP+"\n");
                     dstIP = ti.ip.getIpDestionation();
-                    affichage += ("nouvelle discussion entre \n");
+                    affichage += ("\nNouvelle discussion entre \n");
                     affichage += ti.envoiData();
+            }
             }
             } 
             
@@ -66,5 +72,29 @@ public class Affichage{
         fw.write(affichage);
         fw.close();
         }catch(IOException io){System.err.println("problème dans l'ecriture du fichier");}
+    }
+
+    public void makeCondition(String s){
+        s = s.replaceAll(" ","");
+        String[] tab_condition = s.plit(",");
+        
+        if(tab_condition[0].equals("none")){ip_srcb = false}else{ip_srcb = true;ip_src=tab_condition[1];condtion = true; }
+        if(tab_condition[1].equals("none")){ip_dstb = false}else{ip_dstb = true;ip_dst=tab_condition[2];condtion = true; }
+        
+        if(tab_condition[2].equals("none")){tcp_srcb = false}else{tcp_srcb = true;tcp_src=Integer.parseInt(tab_condition[4]);condtion = true; }
+        if(tab_condition[3].equals("none")){tcp_dstb = false}else{tcp_dstb = true;tcp_dst=Integer.parseInt(tab_condition[5]);condtion = true; }
+        
+    }
+
+    private boolean condition(Trame_info ti){
+        if(!condtion){return true;}
+        else{
+            if(ip)
+            if(ip_srcb){if (ti.ip.getIpSource.equals(ip_src)){return true;}}
+            if(ip_dstb){if (ti.ip.getIpDestionation.equals(ip_dst)){return true;}}
+            if(tcp_dstb){if(ti.tcp.get_dest_port == tcp_dst){return true;}}
+            if(tcp_srcb){if(ti.tcp.get_src_port == tcp_src){return true;}}
+            return false;
+        }
     }
 }
