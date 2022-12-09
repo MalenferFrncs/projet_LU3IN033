@@ -1,14 +1,15 @@
 import java.io.FileReader;
-//import java.util.zip.Checksum;
+
 
 public class TCP {
     private Champ src_port, des_port,seq_num,ack_num,thl_reser, ved_flags, window,
     checksum,urg_pointer,options;
     private Http data = null ;
+    private int tailleData;
 
     public TCP(FileReader r, int taille) throws WrongFileTypeException, EndOfFileException {
         try {
-            src_port = new Champ(r, 2, "source port");
+            src_port = new Champ(r, 2, "source port");  
             des_port = new Champ(r, 2, "destionation port");
             seq_num = new Champ(r,4,"sequence number");
             ack_num = new Champ(r, 4, "ACK number");
@@ -20,14 +21,15 @@ public class TCP {
             int taille_option = (thl_reser.getInt_from_bits(0)*4)-20;
             //System.out.println(""+taille_option);
             options = new Champ(r, taille_option, "options tcp");
+            tailleData = taille-(thl_reser.getInt_from_bits(0)*4) ;
             data = new Http(r,(taille-(thl_reser.getInt_from_bits(0)*4)));
         } catch (Exception e) {
              //TODO: handle exception
         }
+        
+        
 
-
-
-
+        
     }
 
     public int get_src_port(){
@@ -46,13 +48,13 @@ public class TCP {
         return ack_num.getInt_from_Champs();
     }
 
-    public int getTHL()throws WrongFileTypeException{
-       return thl_reser.getInt_from_bits(0);
+    public int getTHL(){
+       return thl_reser.getInt_from_bits(0);            
     }
 
-    public boolean[] getflags() throws WrongFileTypeException{
+    public boolean[] getflags() {
         boolean[] flags = new boolean[6];
-        String tmp = ved_flags.getBitsAt(0);
+        String tmp = ved_flags.getBitsAt(0); 
         if (tmp.charAt(2)=='1' ){flags[0]=true;}
         if (tmp.charAt(3)=='1' ){flags[1]=true;}
         tmp = ved_flags.getBitsAt(1);
@@ -62,6 +64,20 @@ public class TCP {
         if (tmp.charAt(3)=='1' ){flags[5]=true;}
 
         return flags;
+    }
+
+    public String getflagsAffichage() {
+        String flags = "";
+        String tmp = ved_flags.getBitsAt(0); 
+        if (tmp.charAt(2)=='1' ){flags += "URG ";}
+        if (tmp.charAt(3)=='1' ){flags += "ACK ";}
+        tmp = ved_flags.getBitsAt(1);
+        if (tmp.charAt(0)=='1' ){flags += "PSH ";}
+        if (tmp.charAt(1)=='1' ){flags += "RST ";}
+        if (tmp.charAt(2)=='1' ){flags += "SYN ";}
+        if (tmp.charAt(3)=='1' ){flags += "FIN";}
+
+        return "{"+flags+"}";
     }
 
     public int getWindow(){
@@ -77,7 +93,7 @@ public class TCP {
     }
 
     public String option(){
-        return "Les options ne sont pas prises en charge.";
+        return "pas pris en charge lol";
     }
 
 
@@ -85,4 +101,8 @@ public class TCP {
         return data;
     }
 
+    public int getTailleData(){
+        return tailleData;
+    }
+     
 }
