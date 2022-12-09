@@ -19,19 +19,24 @@ public class Affichage{
         dst=tc.trame_list.get(0).destination;
     }
 
-    public void envoiData(){
+    public void infoSrc(){
         System.out.print();
 
     }
 
-    public void recoitData(){
+    public void infoDst(){
         System.out.println();
     }
 
     public void graph(){
       System.out.println(src+"\t"+dst);
       for(Trame s : t.trame_list){
-          
+          if(s.source=src){
+              envoiData();
+          }
+          if(s.source=dst){
+              recoitData();
+          }
       }
     }
 }
