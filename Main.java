@@ -28,7 +28,7 @@ public class Main{
         }
         try{
             Scanner scan= new Scanner(System.in);
-            System.out.println("Veuillez maintenant choisir le filtre que vous voulez appliquez à votre affichage : \n Format : IP,IP Source,IP Destination,TCP,TCP Source,TCP Destination,HTTP \n Dans le cas où un filtre n'est pas à appliquer, taper none; \n");
+            System.out.println("\nVeuillez maintenant choisir le filtre que vous voulez appliquez à votre affichage : \n Format : IP,IP Source,IP Destination,TCP,TCP Source,TCP Destination,HTTP \n Dans le cas où un filtre n'est pas à appliquer, taper none; \n");
             c=scan.nextLine();
         }
         catch(InputMismatchException e){
