@@ -27,6 +27,7 @@ public class Main{
         }
         a.makeAffichage();
         a.printGraph();
+        a.printGrapheIn("out.txt");
 
     }
 }
