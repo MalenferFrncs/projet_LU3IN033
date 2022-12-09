@@ -56,8 +56,8 @@ public class IpV4 {
     public String getflag(int i) {
         String bits = flags_fragment_offset.getBitsAt(0);
         String flag = ""+bits.charAt(i);
-        return flag;
-
+        return flag; 
+        
     }
 
     public int getOffset() {
@@ -98,7 +98,7 @@ public class IpV4 {
         return addr;
     }
 
-    public String getIpDestination(){
+    public String getIpDestionation(){
         String addr = "";
         for(int i=0;i<4;i++){
             int valOctet = destination_adress.getInt_from_bits(i*2);
@@ -112,13 +112,13 @@ public class IpV4 {
     }
 
     public String getOption(){
-        return "Les options ne sont pas prises en charge.";
+        return "les options ne sont pas prisent en chargent";
     }
 
-    public TCP getdata(){
+    public TCP getdata(){ 
         return data ; }
 
-
+    
 
 
 

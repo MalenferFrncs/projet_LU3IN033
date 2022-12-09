@@ -16,7 +16,7 @@ public class Champ {
             
             try{
             currentChar = r.read();
-            //System.out.println(""+currentChar);
+           
             if(currentChar==10 || currentChar == 13 || currentChar == 32 ){ //si on a un espace/fin de ligne/retour a la ligne 
                 i--;                                               //on ignore le tour
                 if(currentChar == 10){
@@ -62,7 +62,7 @@ public class Champ {
                 System.out.println(e.getMessage());
             }
         }
-        //System.out.println(name + " : " + octet);
+      
     }
 
     public String getName(){return name;}
@@ -98,11 +98,11 @@ public class Champ {
     
     public String getBits(){
         String bits="";
-        //try{
+        
         for(int i=0;i<length;i++){
             bits += getBitsAt(i);
         }
-        //}catch(WrongFileTypeException e){System.out.println(e.getMessage());}
+        
         return bits;
     }
 
