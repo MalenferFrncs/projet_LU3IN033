@@ -16,15 +16,16 @@ public class Trame_info{
     public String envoiData(){
         String affichage ="";
         affichage += "ip : "+ip.getIpSource()+ " port : "+tcp.get_src_port();
-        affichage +=  " --> " ; 
+        affichage +=  " --> " ;
         affichage += "ip : "+ip.getIpDestionation() +" port : "+ tcp.get_dest_port();
-        
+
         affichage += " info transimissions : ";
-        
+
         if(http.getRequette()=="" || http.getRequette().length()>100){
-            
+
             affichage += tcp.getflagsAffichage();
             affichage += " win : "+tcp.getWindow()+" len : "+tcp.getTailleData()+"\n";
+            affichage +=
         } else { affichage += http.getRequette()+"\n";}
 
         System.out.println(affichage);
@@ -35,7 +36,7 @@ public class Trame_info{
     public String recoitData(){
         String affichage ="";
         affichage += "ip : "+ip.getIpDestionation()+" port : "+ tcp.get_dest_port();
-        affichage +=  " <-- " ; 
+        affichage +=  " <-- " ;
         affichage += "ip : "+ip.getIpSource() +" port : "+ tcp.get_src_port();
         affichage += " info transimissions : ";
         if(http.getRequette()=="" || http.getRequette().length()>100){
@@ -44,7 +45,7 @@ public class Trame_info{
         } else { affichage += http.getRequette() + "\n";}
         System.out.println(affichage);
         return affichage ;
-       
+
     }
 
 }
