@@ -15,11 +15,18 @@ public class Main{
             fic=sc.nextLine();
         }
         catch(InputMismatchException e){
-            System.out.println("Nom du fichier non valide");
+            System.err.println("Nom du fichier invalide.");
         }
         File f = new File(fic);//nom du fichier
-        Affichage a = new Affichage(f);
-        a.graph();
+        Affichage a =null;
+        try{
+            a = new Affichage(f);
+        }
+        catch(IOException e){
+            System.err.println("Affichage impossible : problème dans la manipulation du fichier.");
+        }
+        a.makeAffichage();
+        a.printGraph();
 
     }
 }
