@@ -28,8 +28,9 @@ public class Main{
         }
         try{
             Scanner scan= new Scanner(System.in);
-            System.out.println("\nVeuillez maintenant choisir le filtre que vous voulez appliquez à votre affichage : \n Format : IP,IP Source,IP Destination,TCP,TCP Source,TCP Destination,HTTP \n Dans le cas où un filtre n'est pas à appliquer, taper none; \n");
+            System.out.println("\nVeuillez maintenant choisir le filtre que vous voulez appliquez à votre affichage : \n Format : IP Source,IP Destination,TCP Source,TCP Destination \n Dans le cas où un filtre n'est pas à appliquer, taper none; \n");
             c=scan.nextLine();
+            System.out.println("\nRemarque : Les données tapés sont considérées comme des booléens et sont reliés par des ou logique.")
         }
         catch(InputMismatchException e){
             System.err.println("Format non respecté");
