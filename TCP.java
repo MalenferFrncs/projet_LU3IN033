@@ -8,7 +8,7 @@ public class TCP {
 
     public TCP(FileReader r, int taille) throws WrongFileTypeException, EndOfFileException {
         try {
-            src_port = new Champ(r, 2, "source port");  
+            src_port = new Champ(r, 2, "source port");
             des_port = new Champ(r, 2, "destionation port");
             seq_num = new Champ(r,4,"sequence number");
             ack_num = new Champ(r, 4, "ACK number");
@@ -24,10 +24,10 @@ public class TCP {
         } catch (Exception e) {
              //TODO: handle exception
         }
-        
-        
 
-        
+
+
+
     }
 
     public int get_src_port(){
@@ -47,12 +47,12 @@ public class TCP {
     }
 
     public int getTHL()throws WrongFileTypeException{
-       return thl_reser.getInt_from_bits(0);            
+       return thl_reser.getInt_from_bits(0);
     }
 
     public boolean[] getflags() throws WrongFileTypeException{
         boolean[] flags = new boolean[6];
-        String tmp = ved_flags.getBitsAt(0); 
+        String tmp = ved_flags.getBitsAt(0);
         if (tmp.charAt(2)=='1' ){flags[0]=true;}
         if (tmp.charAt(3)=='1' ){flags[1]=true;}
         tmp = ved_flags.getBitsAt(1);
@@ -77,12 +77,12 @@ public class TCP {
     }
 
     public String option(){
-        return "pas pris en charge lol";
+        return "Les options ne sont pas prises en charge.";
     }
 
 
     public Http getdata(){
         return data;
     }
-     
+
 }
