@@ -1,22 +1,22 @@
-# projet_LU3IN033
+# PROJET_LU3IN033
 Visualisateur de trame de Bouchaal Samia et Malenfer François pour L'UE LU3IN033
 
-## introduction
+## Introduction
 
 Notre programme permet de  visualiser les flux entre deux machines : il a été developpé dans le cadre du projet de réseau de L3 Informatique a Sorbonne Université (LU3IN033). 
 
-## fonctionnement
+## Fonctionnement
 
-### explication du programme
+### Explication du programme
 
 Le programme est fourni avec un makefile pour le compiler et lancer l'execution du programme qui attent le chemin vers le fichier trace pour le lire.  
 Le programme affiche dans la console les flux entre la source et la destination. Cet affichage est aussi sauvegardé dans le fichier out.txt
 
-### explication du langage
+### Explication du langage
 
 On a choisit java pour implémenter ce programme car la programation orienté objet permet de diviser les informations entres les differentes couches de manière naturel et la bibliothèque d'éxecution de java offre des outils pour gérer les flux d'entrée et de sortie. 
 
-### explication du code
+### Explication du code
 
 Le programme prend en entrée un fichier à partir duquel il construit un FileReader.
 Ce file reader est transmit de classe en classe tout du long de l'éxecution pour 
