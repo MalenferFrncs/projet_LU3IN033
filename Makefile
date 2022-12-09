@@ -1,11 +1,6 @@
 JFLAGS = -g
 JC = javac
 
-.SUFFIXES: .java .class
-
-.java.class:
-	$(JC) $(JFLAGS) $*.java
-
 CLASSES = \
 		  Main.java \
 		  Affichage.java \
@@ -18,6 +13,12 @@ CLASSES = \
 			DataTypeException.java \
 			EndOfFileException.java \
 			WrongFileTypeException.java
+
+.SUFFIXES: .java .class
+
+.java.class:
+	$(JC) $(JFLAGS) $*.java 
+	java Main
 
 default: classes
 
