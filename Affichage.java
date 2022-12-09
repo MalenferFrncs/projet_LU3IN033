@@ -1,5 +1,6 @@
 //import java.util.ArrayList;
 import java.io.File;
+import java.io.FileWriter;
 //import java.io.FileReader;
 import java.io.IOException;
 
@@ -59,7 +60,11 @@ public class Affichage{
         System.out.println(affichage);
     }
 
-    public void printGrapheIn(File dest){
-
+    public void printGrapheIn(String fileName){
+        try{
+        FileWriter fw = new FileWriter(fileName);
+        fw.write(affichage);
+        fw.close();
+        }catch(IOException io){System.err.println("problème dans l'ecriture du fichier");}
     }
 }

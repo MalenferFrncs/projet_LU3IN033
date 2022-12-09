@@ -21,5 +21,6 @@ public class Test2 {
 
         a.makeAffichage();
         a.printGraph();
+        a.printGrapheIn("out.txt");
     }
 }

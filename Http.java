@@ -19,6 +19,7 @@ public class Http {
         try{
            
         while (i<taille) {
+            if(i==200){return;}
            
             currentChar = http.getbyte_from_Champ(i);
             
@@ -27,9 +28,10 @@ public class Http {
             switch(currentChar){
                 case 13 : if (http.getbyte_from_Champ(i+1)==10){
                     
-                    entete[nb_l_entete] = new String(currentstr);
+                    entete[nb_l_entete] = (new String(currentstr,0,j));
                     nb_l_entete++;
                     for(int k = 0 ; k<j; k++){
+                    
                     currentstr[k]=0;
                     }
                     j=0;
