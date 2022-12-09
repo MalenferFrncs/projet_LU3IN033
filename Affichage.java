@@ -76,20 +76,21 @@ public class Affichage{
 
     public void makeCondition(String s){
         String s2 = s.replaceAll(" ","");
+        //System.out.println("s2:"+s2);
         String[] tab_condition = s2.split(",");
+        //System.out.println("tab0:"+tab_condition[0]);
+        //System.out.println("tab1:"+tab_condition[1]);
+        if(tab_condition[0].equals("none")){ip_srcb = false;}else{ip_srcb = true;ip_src=tab_condition[0];condition = true; }
+        if(tab_condition[1].equals("none")){ip_dstb = false;}else{ip_dstb = true;ip_dst=tab_condition[1];condition = true; }
 
-        if(tab_condition[0].equals("none")){ip_srcb = false;}else{ip_srcb = true;ip_src=tab_condition[1];condition = true; }
-        if(tab_condition[1].equals("none")){ip_dstb = false;}else{ip_dstb = true;ip_dst=tab_condition[2];condition = true; }
-
-        if(tab_condition[2].equals("none")){tcp_srcb = false;}else{tcp_srcb = true;tcp_src=Integer.parseInt(tab_condition[4]);condition = true; }
-        if(tab_condition[3].equals("none")){tcp_dstb = false;}else{tcp_dstb = true;tcp_dst=Integer.parseInt(tab_condition[5]);condition = true; }
+        if(tab_condition[2].equals("none")){tcp_srcb = false;}else{tcp_srcb = true;tcp_src=Integer.parseInt(tab_condition[2]);condition = true; }
+        if(tab_condition[3].equals("none")){tcp_dstb = false;}else{tcp_dstb = true;tcp_dst=Integer.parseInt(tab_condition[3]);condition = true; }
 
     }
 
     private boolean condition(Trame_info ti){
         if(!condition){return true;}
         else{
-            if(ip)
             if(ip_srcb){if (ti.ip.getIpSource().equals(ip_src)){return true;}}
             if(ip_dstb){if (ti.ip.getIpDestionation().equals(ip_dst)){return true;}}
             if(tcp_dstb){if(ti.tcp.get_dest_port() == tcp_dst){return true;}}
