@@ -21,13 +21,13 @@ public class Trame_info{
         
         affichage += " info transimissions : ";
         
-        if(http.getRequette()=="" || http.getRequette().length()>100){
+        if(!isHttp()){
             
-            affichage += tcp.getflagsAffichage();
+            affichage += "TCP : "+tcp.getflagsAffichage();
             affichage += " win : "+tcp.getWindow()+" len : "+tcp.getTailleData()+"\n";
-        } else { affichage += http.getRequette()+"\n";}
+        } else { affichage += "HTTP : "+ http.getRequette()+"\n";}
 
-        System.out.println(affichage);
+       
         return affichage ;
 
     }
@@ -38,13 +38,29 @@ public class Trame_info{
         affichage +=  " <-- " ; 
         affichage += "ip : "+ip.getIpSource() +" port : "+ tcp.get_src_port();
         affichage += " info transimissions : ";
-        if(http.getRequette()=="" || http.getRequette().length()>100){
-            affichage += tcp.getflagsAffichage();
+        if(!isHttp()){
+            affichage += "TCP : "+tcp.getflagsAffichage();
             affichage += " win : "+tcp.getWindow()+" len : "+tcp.getTailleData()+"\n";
-        } else { affichage += http.getRequette() + "\n";}
-        System.out.println(affichage);
+        } else { affichage += "HTTP : "+ http.getRequette() + "\n";}
+       
         return affichage ;
        
     }
 
+    private boolean isHttp(){
+        String s = http.getRequette();
+        
+        if (s.equals("")){return false;}
+        else{
+            String str =s.substring(0, 1);
+            if(str.equals("H")){if (s.substring(1, 2).equals("T")){return false;}
+                                else {return true;} } 
+            if(str.equals("G")){return true;}
+            if(str.equals("D")){return true;}
+            if(str.equals("H")){return true;}
+            return false;
+        }
+    }
 }
+
+
