@@ -75,8 +75,8 @@ public class Affichage{
     }
 
     public void makeCondition(String s){
-        s = s.replaceAll(" ","");
-        String[] tab_condition = s.plit(",");
+        String s2 = s.replaceAll(" ","");
+        String[] tab_condition = s2.plit(",");
         
         if(tab_condition[0].equals("none")){ip_srcb = false}else{ip_srcb = true;ip_src=tab_condition[1];condtion = true; }
         if(tab_condition[1].equals("none")){ip_dstb = false}else{ip_dstb = true;ip_dst=tab_condition[2];condtion = true; }
