@@ -16,13 +16,13 @@ public class Trame_champ {
             for(int j = 0 ; j<4 ; j++){
                 r.read();                   // retirer le 1er offset
             }
-            
+
             while(true) {
-                trame_list.add(new Trame_info(new Trame(r)));   
+                trame_list.add(new Trame_info(new Trame(r)));
             }
-        
+
         }catch(EndOfFileException eof){
-            System.out.println("la fin du document est atteinte");
+            //System.out.println("la fin du document est atteinte");
             r.close();
             return ;
         }catch(WrongFileTypeException wft){
@@ -30,15 +30,12 @@ public class Trame_champ {
             System.err.println("veuiller mettre un fichier avec les bonnes caractèristiques en paramètre");
 
         }catch (IOException e) {
-           
+
            System.err.println(e.getMessage());
-           
-              
+
+
         }finally{ r.close(); }
-            
+
     }
 
 }
-
-
-
