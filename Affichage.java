@@ -23,7 +23,7 @@ public class Affichage{
         this.tc=new Trame_champ(f);
         srcIP=tc.trame_list.get(0).ip.getIpSource();
         dstIP=tc.trame_list.get(0).ip.getIpDestionation();
-        
+
     }
 
     /*public void infoSrc(){
@@ -36,7 +36,7 @@ public class Affichage{
     } */
 
     public void makeAffichage(){
-    
+
       affichage += ("\nDiscussion entre "+srcIP+" et "+dstIP+"\n");
       while(!(tc.trame_list.isEmpty())){
             Trame_info ti = tc.trame_list.remove(0);
@@ -45,7 +45,7 @@ public class Affichage{
             System.out.println(""+ dstIP);
             System.out.println(""+(ti.ip.getIpDestionation().equals(dstIP))); */
             if(ti.ip.getIpDestionation().equals(dstIP)){
-                affichage += ti.envoiData();    
+                affichage += ti.envoiData();
             }else{
                 if(ti.ip.getIpDestionation().equals(srcIP)){
                     affichage += ti.recoitData();
@@ -56,10 +56,10 @@ public class Affichage{
                     affichage += ti.envoiData();
             }
             }
-            } 
-            
+            }
+
         }
-       
+
     }
 
     public void printGraph(){
@@ -76,24 +76,24 @@ public class Affichage{
 
     public void makeCondition(String s){
         String s2 = s.replaceAll(" ","");
-        String[] tab_condition = s2.plit(",");
-        
-        if(tab_condition[0].equals("none")){ip_srcb = false}else{ip_srcb = true;ip_src=tab_condition[1];condtion = true; }
-        if(tab_condition[1].equals("none")){ip_dstb = false}else{ip_dstb = true;ip_dst=tab_condition[2];condtion = true; }
-        
-        if(tab_condition[2].equals("none")){tcp_srcb = false}else{tcp_srcb = true;tcp_src=Integer.parseInt(tab_condition[4]);condtion = true; }
-        if(tab_condition[3].equals("none")){tcp_dstb = false}else{tcp_dstb = true;tcp_dst=Integer.parseInt(tab_condition[5]);condtion = true; }
-        
+        String[] tab_condition = s2.split(",");
+
+        if(tab_condition[0].equals("none")){ip_srcb = false;}else{ip_srcb = true;ip_src=tab_condition[1];condition = true; }
+        if(tab_condition[1].equals("none")){ip_dstb = false;}else{ip_dstb = true;ip_dst=tab_condition[2];condition = true; }
+
+        if(tab_condition[2].equals("none")){tcp_srcb = false;}else{tcp_srcb = true;tcp_src=Integer.parseInt(tab_condition[4]);condition = true; }
+        if(tab_condition[3].equals("none")){tcp_dstb = false;}else{tcp_dstb = true;tcp_dst=Integer.parseInt(tab_condition[5]);condition = true; }
+
     }
 
     private boolean condition(Trame_info ti){
-        if(!condtion){return true;}
+        if(!condition){return true;}
         else{
             if(ip)
-            if(ip_srcb){if (ti.ip.getIpSource.equals(ip_src)){return true;}}
-            if(ip_dstb){if (ti.ip.getIpDestionation.equals(ip_dst)){return true;}}
-            if(tcp_dstb){if(ti.tcp.get_dest_port == tcp_dst){return true;}}
-            if(tcp_srcb){if(ti.tcp.get_src_port == tcp_src){return true;}}
+            if(ip_srcb){if (ti.ip.getIpSource().equals(ip_src)){return true;}}
+            if(ip_dstb){if (ti.ip.getIpDestionation().equals(ip_dst)){return true;}}
+            if(tcp_dstb){if(ti.tcp.get_dest_port() == tcp_dst){return true;}}
+            if(tcp_srcb){if(ti.tcp.get_src_port() == tcp_src){return true;}}
             return false;
         }
     }

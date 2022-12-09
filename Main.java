@@ -30,7 +30,7 @@ public class Main{
             Scanner scan= new Scanner(System.in);
             System.out.println("\nVeuillez maintenant choisir le filtre que vous voulez appliquez à votre affichage : \n Format : IP Source,IP Destination,TCP Source,TCP Destination \n Dans le cas où un filtre n'est pas à appliquer, taper none; \n");
             c=scan.nextLine();
-            System.out.println("\nRemarque : Les données tapés sont considérées comme des booléens et sont reliés par des ou logique.")
+            System.out.println("\nRemarque : Les données tapés sont considérées comme des booléens et sont reliés par des ou logique.");
         }
         catch(InputMismatchException e){
             System.err.println("Format non respecté");
