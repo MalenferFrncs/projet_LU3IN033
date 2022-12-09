@@ -54,7 +54,7 @@ public class Trame {
     }
 
     public String getOctet(){
-        return preambule.getOctet()+destination.getOctet()+source.getOctet()+type.getOctet()+data.getOctet()+crc.getOctet();
+        return destination.getOctet()+source.getOctet()+type.getOctet()+data.getOctet();
     }
 
     public IpV4 getdata(){
