@@ -2,7 +2,7 @@ import java.io.FileReader;
 
 
 public class Trame {
-    private Champ preambule, destination,source,type,crc;
+    private Champ destination,source,type;
     private IpV4 data;
     
    
