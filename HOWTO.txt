@@ -6,12 +6,13 @@ Bienvenue dans notre Visualisateur.
 
 Pour utiliser notre programme:
 1. ouvrir un terminal au dossier
-2. mettre les fichiers traces dans le dossier
+2. mettre les fichiers traces dans le dossier (optionnel)
 3. taper make dans le terminal
 4. taper java Main dans le terminal
-5. taper le nom du fichier trace choisi
+5. taper le nom du fichier trace choisi ou taper le chemin absolu au fichier si
+l'étape 2 a été ignorée
 
 --------------------------------------------------------------------------------
 
-Il n'est pas nécessaire d'installer de packages pour utiliser notre programme,
-l'affichage se fait via le terminal.
+*Il n'est pas nécessaire d'installer de packages pour utiliser notre programme,
+l'affichage se fait via le terminal.*
